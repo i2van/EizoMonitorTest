@@ -1,0 +1,35 @@
+﻿name: build
+
+on: [push, pull_request, workflow_dispatch]
+
+env:
+  NAME: EizoMonitorTest
+  PACKAGE_NAME: package.nw
+  RETENTION_DAYS: 30
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+
+    # Check out
+
+    - name: Check out ${{env.NAME}}
+      uses: actions/checkout@v4.2.2
+
+    # Create package
+
+    - name: Create ${{env.PACKAGE_NAME}}
+      run: |
+        7z -tzip -mx=9 a ${{env.PACKAGE_NAME}} css/* img/* js/* *.png index.html inject_js_start.js LICENSE package.json README.md
+
+    # Upload package
+
+    - name: Upload ${{env.PACKAGE_NAME}}
+      uses: actions/upload-artifact@v4.4.3
+      with:
+        name: ${{env.PACKAGE_NAME}}
+        path: ${{env.PACKAGE_NAME}}
+        compression-level: 0
+        retention-days: ${{env.RETENTION_DAYS}}

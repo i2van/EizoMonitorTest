@@ -1,0 +1,10 @@
+{
+  "name": "EIZO_MONITOR_TEST",
+  "version": "2.1.0",
+  "main": "index.html",
+  "inject_js_start": "inject_js_start.js",
+  "window" : {
+    "position": "center",
+    "icon": "EIZO.png"
+  }
+}
