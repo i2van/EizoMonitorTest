@@ -16,7 +16,7 @@ jobs:
     # Check out
 
     - name: Check out ${{env.NAME}}
-      uses: actions/checkout@v6.0.0
+      uses: actions/checkout@v6.0.2
 
     # Create package
 
